@@ -16,17 +16,12 @@ export default function App() {
   return (
     <Wrapper>
       <OutputDisplay>
-        <div className="text-sm font-normal">
-          {formatOperand(previousOperand)} {operation}
-        </div>
-        <div>{formatOperand(currentOperand)}</div>
+        {formatOperand(previousOperand)}
+        {operation}
+        {formatOperand(currentOperand)}
       </OutputDisplay>
 
-      <div className="flex justify-end m-3">
-        <button onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}>
-          <p className="hover:text-zinc-400">del</p>
-        </button>
-      </div>
+      <div className="flex justify-end m-3"></div>
 
       <div className="flex justify-center items-center">
         <hr className="w-[90%] border-t-zinc-800" />
@@ -34,17 +29,18 @@ export default function App() {
 
       <ButtonWrapper>
         <button
-          className="rounded-full bg-emerald-400 hover:bg-emerald-600"
+          className="rounded-full bg-emerald-400 hover:bg-emerald-600 col-span-2"
           onClick={() => dispatch({ type: ACTIONS.CLEAR })}
         >
           C
         </button>
-        <button className="rounded-full bg-emerald-400 hover:bg-emerald-600">
-          ()
+
+        <button
+          className="rounded-full bg-rose-600 hover:bg-rose-00"
+          onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}>
+          <p className="hover:text-zinc-400">del</p>
         </button>
-        <button className="rounded-full bg-emerald-400 hover:bg-emerald-600">
-          %
-        </button>
+
         <OperationButton
           operation="÷"
           dispatch={dispatch}
@@ -101,13 +97,14 @@ export default function App() {
           dispatch={dispatch}
         />
 
-        <button className="rounded-full border border-zinc-800 bg-zinc-950 hover:bg-zinc-800">
-          +/-
+        <button
+          className="rounded-full border border-zinc-800 bg-zinc-950 hover:bg-zinc-900 col-span-2"
+          onClick={() =>
+            dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: "0" } })
+          }
+        >
+          {"0"}
         </button>
-        <DigitButton
-          digit="0"
-          dispatch={dispatch}
-        />
         <DigitButton
           digit="."
           dispatch={dispatch}

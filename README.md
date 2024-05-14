@@ -1,6 +1,5 @@
 # React Calculator
-
-tools used:
-- React
-- Tailwind CSS
-- Vite
+Tools used:
+- [React](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
