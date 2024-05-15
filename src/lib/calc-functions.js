@@ -11,12 +11,26 @@ export function reducer(state, { type, payload }) {
         };
       }
 
-      if (payload.digit === "0" && (state.currentOperand == null || state.currentOperand.includes("."))) {
+      if (payload.digit === "." && state.currentOperand == null) {
+        return {
+          ...state,
+          currentOperand: "0.",
+        };
+      }
+
+      if (payload.digit === "0" && state.currentOperand === "0") {
         return state;
       }
 
-      if (payload.digit === "." && (state.currentOperand == null || state.currentOperand.includes("."))) {
+      if (payload.digit === "." && state.currentOperand.includes(".")) {
         return state;
+      }
+
+      if (state.currentOperand === "0" && payload.digit != ".") {
+        return {
+          ...state,
+          currentOperand: payload.digit,
+        };
       }
 
       return {
@@ -26,6 +40,10 @@ export function reducer(state, { type, payload }) {
 
     case ACTIONS.CHOOSE_OPERATION:
       if (state.currentOperand == null && state.previousOperand == null) {
+        return state;
+      }
+
+      if (state.currentOperand === "0.") {
         return state;
       }
 
@@ -111,16 +129,16 @@ export function evaluate({ currentOperand, previousOperand, operation }) {
 
   switch (operation) {
     case "+":
-      computation = prev + current;
+      computation = parseFloat(prev + current).toFixed(2);
       break;
     case "-":
-      computation = prev - current;
+      computation = parseFloat(prev - current).toFixed(2);
       break;
     case "×":
-      computation = prev * current;
+      computation = parseFloat(prev * current).toFixed(2);
       break;
     case "÷":
-      computation = prev / current;
+      computation = parseFloat(prev / current).toFixed(2);
       break;
   }
 
