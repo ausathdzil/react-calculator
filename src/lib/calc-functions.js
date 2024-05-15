@@ -129,16 +129,16 @@ export function evaluate({ currentOperand, previousOperand, operation }) {
 
   switch (operation) {
     case "+":
-      computation = parseFloat(prev + current).toFixed(2);
+      computation = (prev + current);
       break;
     case "-":
-      computation = parseFloat(prev - current).toFixed(2);
+      computation = (prev - current);
       break;
     case "×":
-      computation = parseFloat(prev * current).toFixed(2);
+      computation = (prev * current);
       break;
     case "÷":
-      computation = parseFloat(prev / current).toFixed(2);
+      computation = (prev / current);
       break;
   }
 
